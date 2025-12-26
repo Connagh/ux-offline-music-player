@@ -1,0 +1,101 @@
+# =============================================================================
+# WHITELIST-BASED .gitignore
+# =============================================================================
+# This .gitignore uses a "deny all, allow some" approach for maximum security.
+# Only explicitly allowed files will be tracked by git.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# FIRST: Ignore everything by default
+# -----------------------------------------------------------------------------
+*
+
+# -----------------------------------------------------------------------------
+# SECOND: Allow specific files and directories
+# -----------------------------------------------------------------------------
+
+# Root-level documentation and config
+!.gitignore
+!README.md
+!CHANGELOG.md
+!LICENSE.txt
+!PRIVACY.md
+
+# Xcode project (the main one)
+!UX Offline Music Player.xcodeproj/
+!UX Offline Music Player.xcodeproj/project.pbxproj
+!UX Offline Music Player.xcodeproj/xcshareddata/
+!UX Offline Music Player.xcodeproj/xcshareddata/**
+
+# Info.plist and Entitlements
+!offline-music-player-Info.plist
+!offline music player.entitlements
+
+# Source code directory
+!offline music player/
+!offline music player/**
+
+# -----------------------------------------------------------------------------
+# THIRD: Re-ignore specific dangerous patterns within allowed directories
+# -----------------------------------------------------------------------------
+
+# macOS system files
+**/.DS_Store
+**/._*
+
+# Xcode user-specific data (never share these)
+**/xcuserdata/
+**/*.xcuserstate
+**/*.xcuserdatad/
+**/*.xccheckout
+**/*.moved-aside
+**/*.pbxuser
+**/*.mode1v3
+**/*.mode2v3
+**/*.perspectivev3
+
+# Build artifacts
+**/DerivedData/
+**/build/
+**/*.hmap
+**/*.ipa
+**/*.dSYM
+**/*.dSYM.zip
+**/*.app
+**/*.o
+
+# Swift Package Manager
+**/.build/
+**/.swiftpm/
+**/Package.resolved
+
+# CocoaPods
+**/Pods/
+
+# Carthage
+**/Carthage/Build/
+
+# Fastlane
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots/
+**/fastlane/test_output/
+
+# Crashlytics
+**/com.crashlytics.data/
+
+# Local/sensitive files
+**/*.local
+**/.env
+**/*.log
+**/build_log.txt
+**/*.xcscmblueprint
+
+# Secrets / Keys (just in case)
+**/*secret*
+**/*credentials*
+**/GoogleService-Info.plist
+**/*.p12
+**/*.p8
+**/*.mobileprovision
+**/*.provisionprofile
