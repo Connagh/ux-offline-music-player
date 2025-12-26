@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.15] - 2025-12-26
+### Added
+- Added **Privacy Policy** and **Terms of Use** links to Paywall and Settings for App Store compliance (Guideline 3.1.2).
+### Changed
+- Updated **GitHub repository link** in Settings to new public repository.
+
 ## [1.0.14] - 2025-12-26
 ### Security
 - Implemented **whitelist-based .gitignore** policy to prevent accidental commitment of sensitive files (deny-all, allow-specific).

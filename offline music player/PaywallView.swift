@@ -97,6 +97,17 @@ struct PaywallView: View {
                             }
                             .foregroundColor(.gray)
                             .font(.footnote)
+                            .padding(.bottom, 10)
+                            
+                            // Legal Links (Required for App Store)
+                            HStack(spacing: 16) {
+                                Link("Privacy Policy", destination: URL(string: "https://gist.github.com/Connagh/ebad376564d253ed76d22c30c8bc4313")!)
+                                Text("•")
+                                    .foregroundColor(.gray)
+                                Link("Terms of Use", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                            }
+                            .font(.caption)
+                            .foregroundColor(.gray)
                             .padding(.bottom, 20)
                         }
                         .padding(.bottom, 20) // Extra padding for scroll
