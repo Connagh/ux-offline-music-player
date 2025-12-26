@@ -312,7 +312,7 @@ struct SettingsView: View {
                         }
                         
                         Button(action: {
-                            if let url = URL(string: "https://github.com/Connagh/offline-music-player-ios") {
+                            if let url = URL(string: "https://github.com/Connagh/ux-offline-music-player") {
                                 UIApplication.shared.open(url)
                             }
                         }) {
@@ -322,6 +322,30 @@ struct SettingsView: View {
                                 Image(systemName: "arrow.up.right.square")
                             }
                             .foregroundColor(.offlineOrange)
+                        }
+                        .listRowBackground(Color.offlineDarkGray)
+                    }
+                    
+                    Section(header: Text("Legal").foregroundColor(.gray)) {
+                        Link(destination: URL(string: "https://gist.github.com/Connagh/ebad376564d253ed76d22c30c8bc4313")!) {
+                            HStack {
+                                Text("Privacy Policy")
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Image(systemName: "arrow.up.right.square")
+                                    .foregroundColor(.offlineOrange)
+                            }
+                        }
+                        .listRowBackground(Color.offlineDarkGray)
+                        
+                        Link(destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!) {
+                            HStack {
+                                Text("Terms of Use")
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Image(systemName: "arrow.up.right.square")
+                                    .foregroundColor(.offlineOrange)
+                            }
                         }
                         .listRowBackground(Color.offlineDarkGray)
                     }
