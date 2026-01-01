@@ -12,7 +12,7 @@ struct PlayerBarView: View {
     @State private var showPaywall = false
     @State private var showEqualizer = false
 
-    @State private var showGameAlert = false
+
     @State private var isGamePresented = false
     @State private var showEffectsView = false
 
@@ -196,9 +196,8 @@ struct PlayerBarView: View {
                     
                      Spacer()
                      
-                     // Right Group: DJ + EQ
+                     // Right Group: EQ + Game
                      HStack(spacing: 8) {
-                         
                          // EQ Button (Toggle Style)
                          Button(action: {
                              if storeManager.isPremium {
@@ -218,13 +217,18 @@ struct PlayerBarView: View {
                                  )
                                  .shadow(color: playerManager.isEQActive ? Color.offlineOrange.opacity(0.6) : Color.clear, radius: 4)
                          }
-
-                            // Game Mode Button
+                         
+                         // Game Mode Button (right of EQ)
                          if playerManager.showGameButton {
                              Button(action: {
                                  if storeManager.isPremium {
-                                     showGameAlert = true
+                                     // Pro users: pause current song and launch game mode
+                                     if playerManager.isPlaying {
+                                         playerManager.pause()
+                                     }
+                                     isGamePresented = true
                                  } else {
+                                     // Free users: show paywall
                                      showPaywall = true
                                  }
                              }) {
@@ -237,19 +241,6 @@ struct PlayerBarView: View {
                                          Capsule()
                                              .stroke(Color.gray, lineWidth: 1)
                                      )
-                             }
-                             .alert(isPresented: $showGameAlert) {
-                                 Alert(
-                                     title: Text("Perform this song? (Experimental Mode)"),
-                                     message: Text("Recommendation: Use device speakers or wired headphones to reduce latency caused by bluetooth."),
-                                     primaryButton: .default(Text("Perform")) {
-                                         if playerManager.isPlaying {
-                                             playerManager.pause()
-                                         }
-                                         isGamePresented = true
-                                     },
-                                     secondaryButton: .cancel()
-                                 )
                              }
                              .fullScreenCover(isPresented: $isGamePresented) {
                                  if let song = playerManager.currentSong {

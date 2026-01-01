@@ -1098,7 +1098,7 @@ class AudioPlayerManager: ObservableObject {
     }
     
     // Visibility Preferences
-    @Published var showGameButton: Bool = false {
+    @Published var showGameButton: Bool = true {
         didSet {
             UserDefaults.standard.set(showGameButton, forKey: "showGameButton")
         }
@@ -1184,7 +1184,7 @@ class AudioPlayerManager: ObservableObject {
         
         // Visibility Defaults (True if not set)
         if UserDefaults.standard.object(forKey: "showGameButton") == nil {
-            self.showGameButton = false
+            self.showGameButton = true
         } else {
             self.showGameButton = UserDefaults.standard.bool(forKey: "showGameButton")
         }

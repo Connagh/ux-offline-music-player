@@ -271,14 +271,17 @@ struct SettingsView: View {
                     Section(header: Text("Player Controls").foregroundColor(.gray)) {
                         VStack(alignment: .leading, spacing: 4) {
                             if storeManager.isPremium {
-                                Toggle(isOn: $playerManager.showGameButton) {
-                                    Text("Show Game Button")
+                                Toggle(isOn: Binding(
+                                    get: { !playerManager.showGameButton },
+                                    set: { playerManager.showGameButton = !$0 }
+                                )) {
+                                    Text("Hide Game Button")
                                         .foregroundColor(.white)
                                 }
                             } else {
                                 Button(action: { showPaywall = true }) {
                                     HStack {
-                                        Text("Show Game Button")
+                                        Text("Hide Game Button")
                                             .foregroundColor(.white)
                                         Spacer()
                                         Image(systemName: "lock.fill")

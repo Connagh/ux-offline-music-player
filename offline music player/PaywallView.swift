@@ -3,7 +3,7 @@ import StoreKit
 
 struct PaywallView: View {
     @ObservedObject var storeManager = StoreManager.shared
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     @State private var showSuccess = false
     
@@ -14,7 +14,7 @@ struct PaywallView: View {
                 
                 if showSuccess {
                    FeaturesUnlockedView {
-                       presentationMode.wrappedValue.dismiss()
+                       dismiss()
                    }
                    .transition(.opacity)
                 } else {
@@ -118,12 +118,12 @@ struct PaywallView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if !showSuccess {
                         Button("Done") {
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }
                         .foregroundColor(.white)
                     } else {
                         Button("Close") {
-                             presentationMode.wrappedValue.dismiss()
+                             dismiss()
                         }
                         .foregroundColor(.white)
                         .fontWeight(.bold)
@@ -138,6 +138,7 @@ struct PaywallView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
         .task {
             // Auto-retry fetching products if none are loaded when view appears
             if storeManager.products.isEmpty {
@@ -244,9 +245,11 @@ struct PurchaseButton: View {
     let product: Product
     
     var body: some View {
-        Button(action: {
-            Task { await storeManager.purchase(product) }
-        }) {
+        Button {
+            Task {
+                await storeManager.purchase(product)
+            }
+        } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(product.displayName)
@@ -282,7 +285,9 @@ struct PurchaseButton: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color.offlineOrange.opacity(0.3), lineWidth: 1)
             )
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
         .disabled(storeManager.isPurchasing)
         .opacity(storeManager.isPurchasing ? 0.6 : 1.0)
     }
