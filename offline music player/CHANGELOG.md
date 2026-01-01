@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.18] - 2026-01-01
+### Changed
+- **Changelog**: In-app changelog now automatically syncs with `CHANGELOG.md` (no more hardcoded strings).
+
+## [1.0.17] - 2026-01-01
+### Changed
+- **Game Button**: Now visible by default in the player bar (positioned right of EQ).
+- **Game Mode**: Pro users can now launch Game Mode instantly (no confirmation alert). Free users see Paywall.
+- **Settings**: New "Hide Game Button" toggle (Pro only) allows hiding the button if desired.
+
+## [1.0.16] - 2025-12-31
+### Fixed
+- Fixed unresponsive In-App Purchase buttons on iPad (added missing `.navigationViewStyle(.stack)`).
+- Improved touch responsiveness for purchase buttons by correcting hit-testing area.
+
 ## [1.0.15] - 2025-12-26
 ### Added
 - Added **Privacy Policy** and **Terms of Use** links to Paywall and Settings for App Store compliance (Guideline 3.1.2).
